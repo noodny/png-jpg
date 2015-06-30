@@ -1,6 +1,6 @@
 {
     "name": "png-jpg",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Convert from png to jpg and vice versa.",
     "main": "index.js",
     "scripts": {
