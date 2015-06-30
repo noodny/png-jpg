@@ -24,6 +24,7 @@
     },
     "homepage": "https://github.com/noodny/png-jpg",
     "dependencies": {
+        "color-transform": "^1.0.1",
         "jpg-stream": "^1.1.1",
         "png-stream": "^1.0.4"
     }

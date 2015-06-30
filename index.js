@@ -1,6 +1,7 @@
 var fs = require('fs'),
     PNG = require('png-stream'),
-    JPG = require('jpg-stream');
+    JPG = require('jpg-stream'),
+    ColorTransform = require('color-transform');
 
 function getType(path) {
     if(path.indexOf('.png') === path.length - 4) {
@@ -20,13 +21,14 @@ module.exports = function(params, callback) {
         if(inputType === 'png') {
             fs.createReadStream(params.input)
                 .pipe(new PNG.Decoder)
-                .pipe(new JPG.Encoder(params.options))
+                .pipe(new ColorTransform('rgb'))
+                .pipe(new JPG.Encoder(params.options || {}))
                 .pipe(fs.createWriteStream(params.output))
                 .on('close', callback);
         } else {
             fs.createReadStream(params.input)
                 .pipe(new JPG.Decoder)
-                .pipe(new PNG.Encoder(params.options))
+                .pipe(new PNG.Encoder(params.options || {}))
                 .pipe(fs.createWriteStream(params.output))
                 .on('close', callback);
         }
